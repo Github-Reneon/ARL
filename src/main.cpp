@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-	ARL::App test;
-	test.Start();
+	 ARL::App app;
+	app.Start();
 	return 0;
 }

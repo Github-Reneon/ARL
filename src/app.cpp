@@ -4,6 +4,7 @@ using namespace ARL;
 
 App::App()
 {
+
 	ticks = 0;
 	gamestate = -1;
 }
@@ -16,6 +17,9 @@ void App::Render()
 	iter++;
 	if (iter > 2)
 		iter = 0;
+
+	if (running == true)
+		std::cout << img_manager.testvec.size() << "\n";		
 
 }
 
@@ -34,6 +38,15 @@ void App::Inputs()
 			{
 				case SDLK_q:
 					running = false;
+					break;
+				case SDLK_w:
+					img_manager.testvec.resize(img_manager.testvec.size() + 1);
+					break;
+				case SDLK_s:
+					if (img_manager.testvec.size() > 0)
+					{
+						img_manager.testvec.resize(img_manager.testvec.size() - 1);
+					}
 					break;
 			}
 		}
@@ -60,26 +73,15 @@ void App::Start()
 	}
 	else
 	{
-		time_t current_time = NULL;
-		time_t end_frame_time = NULL;
 		while (running) {
 			
-			if (current_time != NULL && end_frame_time != NULL)
-			{
-				double diff = difftime(end_frame_time, current_time);
-				printf("%f\n", diff * 1000);
-			}
-			//get current time
-			time(&current_time);
 			//rendering
 			Render();
 			//inputs
 			Inputs();
 
-			time(&end_frame_time);
 		}
 	}
-
 	SDL_DestroyWindow(window);
 
 	SDL_Quit();

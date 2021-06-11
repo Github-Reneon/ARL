@@ -6,7 +6,8 @@
 #include <SDL2/SDL.h>
 #include <stdio.h>
 #include <iostream>
-#include <time.h>
+
+#include "img_manager.h"
 
 namespace ARL {
 	class App {
@@ -22,6 +23,8 @@ namespace ARL {
 		int gamestate;
 		int ticks;
 		bool running = true;
+		
+		IMG_Manager img_manager;
 
 		// Debug vars
 		int iter = 0;
