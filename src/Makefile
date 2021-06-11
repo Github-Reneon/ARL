@@ -12,7 +12,7 @@ OBJDIR=objs
 
 OBJECTS:=$(foreach sourcefile, $(SOURCE), $(basename $(OBJDIR)/$(sourcefile)).o)
 
-TARGET=start
+TARGET=start.run
 
 ALL: $(TARGET) 
 

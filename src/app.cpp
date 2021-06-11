@@ -11,7 +11,7 @@ App::App()
 void App::Render()
 {
 	surface = SDL_GetWindowSurface (window);
-	SDL_FillRect( surface, NULL, SDL_MapRGB(surface->format, colours[iter][0], colours[iter][1], colours[iter][2] ) );
+	SDL_FillRect( surface, NULL, SDL_MapRGB(surface->format, 0,0,0 )); 
 	SDL_UpdateWindowSurface(window);
 	iter++;
 	if (iter > 2)
@@ -76,7 +76,6 @@ void App::Start()
 			//inputs
 			Inputs();
 
-			SDL_Delay(100);
 			time(&end_frame_time);
 		}
 	}
