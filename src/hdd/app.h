@@ -15,8 +15,8 @@ namespace ARL {
 		private:
 
 		// CONSTANT VARS
-		const int SCREEN_WIDTH = 1280;
-		const int SCREEN_HEIGHT = 720;
+		const int SCREEN_WIDTH = 854;
+		const int SCREEN_HEIGHT = 480;
 
 		// METADATA
 		
@@ -36,7 +36,7 @@ namespace ARL {
 	
 		// SDL VARS
 		SDL_Window* window = NULL;
-		SDL_Surface* surface = NULL;	
+		SDL_Renderer* renderer = NULL;	
 		SDL_Event e;
 
 		// Private methods

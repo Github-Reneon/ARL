@@ -4,23 +4,18 @@ using namespace ARL;
 
 App::App()
 {
-
 	ticks = 0;
 	gamestate = -1;
 }
 
 void App::Render()
 {
-	surface = SDL_GetWindowSurface (window);
-	SDL_FillRect( surface, NULL, SDL_MapRGB(surface->format, 0,0,0 )); 
-	SDL_UpdateWindowSurface(window);
-	iter++;
-	if (iter > 2)
-		iter = 0;
-
-	if (running == true)
-		std::cout << img_manager.testvec.size() << "\n";		
-
+	SDL_RenderClear(renderer);
+	for (int i = 0; i < img_manager.textures[img_manager.DEBUG].size(); i++)
+	{
+		SDL_RenderCopy(renderer, img_manager.textures[img_manager.DEBUG][i], NULL, NULL);
+	}
+	SDL_RenderPresent(renderer);
 }
 
 void App::Inputs()
@@ -40,13 +35,8 @@ void App::Inputs()
 					running = false;
 					break;
 				case SDLK_w:
-					img_manager.testvec.resize(img_manager.testvec.size() + 1);
 					break;
 				case SDLK_s:
-					if (img_manager.testvec.size() > 0)
-					{
-						img_manager.testvec.resize(img_manager.testvec.size() - 1);
-					}
 					break;
 			}
 		}
@@ -55,11 +45,14 @@ void App::Inputs()
 
 void App::Start()
 {
+
 	if (SDL_Init( SDL_INIT_VIDEO ) < 0)
 	{
 		printf("SDL could not be initialised! Error: %s\n", SDL_GetError());
 	}
 
+
+	// INIT WINDOW
 	window = SDL_CreateWindow("default", 
 			SDL_WINDOWPOS_UNDEFINED, 
 			SDL_WINDOWPOS_UNDEFINED, 
@@ -70,18 +63,27 @@ void App::Start()
 	if (window == NULL)
 	{
 		printf("SDL window could not be created! Error: %s\n", SDL_GetError() ); 
+		return;
 	}
-	else
-	{
-		while (running) {
-			
-			//rendering
-			Render();
-			//inputs
-			Inputs();
 
-		}
+	// INIT RENDERER
+	renderer = SDL_CreateRenderer (window, -1, SDL_RENDERER_ACCELERATED);
+		
+	if (renderer == NULL)
+	{
+		printf("SDL renderer could not be created! Error: %s\n", SDL_GetError());
+		return;
 	}
+	
+	img_manager = IMG_Manager(renderer);
+
+	while (running) {
+		//rendering
+		Render();
+		//inputs
+		Inputs();
+	}
+	
 	SDL_DestroyWindow(window);
 
 	SDL_Quit();

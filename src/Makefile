@@ -2,7 +2,7 @@ COMP=g++
 
 COMPILER_FLAGS=-Wall -g
 
-LINKER_FLAGS=-lSDL2
+LINKER_FLAGS=-lSDL2 -lSDL2_image
 
 SOURCE=$(wildcard *.cpp)
 
@@ -27,4 +27,4 @@ $(OBJDIR):
 
 clean:
 	rm -r $(OBJDIR)
-	rm $(TARGET)
+	rm -f $(TARGET)
