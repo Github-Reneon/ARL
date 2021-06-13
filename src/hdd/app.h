@@ -20,7 +20,7 @@ namespace ARL {
 
 		// METADATA
 		
-		int gamestate;
+		int gamestate = -1;
 		int ticks;
 		bool running = true;
 		
@@ -33,7 +33,10 @@ namespace ARL {
 			{ 0, 255, 0},
 			{ 0, 0, 255}
 		};
-	
+		
+		int x = 0;
+		int y = 0;
+
 		// SDL VARS
 		SDL_Window* window = NULL;
 		SDL_Renderer* renderer = NULL;	

@@ -28,6 +28,7 @@ bool IMG_Manager::load_media()
 {
 
 	SDL_Texture* newTexture = load_texture("img/arch.jpg");
+	SDL_Texture* titleScreen = load_texture("img/title.jpg");
 
 	textures.resize(3);
 
@@ -35,17 +36,17 @@ bool IMG_Manager::load_media()
 		return false;
 	
 	// MISC
-	textures[0].resize(textures[0].size() + 1);
+	textures[0].resize(textures[0].size() + 2);
 	textures[0][ARCH] = newTexture;
-
+	textures[0][TITLE] = titleScreen;
 	return true;
 }
 
 IMG_Manager::IMG_Manager(SDL_Renderer* ren)
 {
-	printf("starting correct init\n");
 	renderer = ren;
 	load_media();
+	printf("Image manager init!");
 }
 
 IMG_Manager::IMG_Manager()

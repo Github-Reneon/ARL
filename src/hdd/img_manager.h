@@ -16,7 +16,8 @@ namespace ARL{
 
 		public:
 		enum rows { DEBUG=0, WORLD=1, CHARACTERS=2, MONSTERS=3 };
-		enum columns { ARCH=0 };
+		enum columns { ARCH=0,
+			       TITLE=1};
 		
 		std::vector<std::vector<SDL_Texture*>> textures;
 

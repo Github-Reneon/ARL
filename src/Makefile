@@ -26,5 +26,5 @@ $(OBJDIR):
 	mkdir $(OBJDIR)
 
 clean:
-	rm -r $(OBJDIR)
+	rm -r -f $(OBJDIR)
 	rm -f $(TARGET)
