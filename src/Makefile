@@ -2,7 +2,7 @@ COMP=g++
 
 COMPILER_FLAGS=-Wall -g
 
-LINKER_FLAGS=-lSDL2
+LINKER_FLAGS=-lSDL2 -lSDL2_image
 
 SOURCE=$(wildcard *.cpp)
 
@@ -12,7 +12,7 @@ OBJDIR=objs
 
 OBJECTS:=$(foreach sourcefile, $(SOURCE), $(basename $(OBJDIR)/$(sourcefile)).o)
 
-TARGET=start
+TARGET=start.run
 
 ALL: $(TARGET) 
 
@@ -26,5 +26,5 @@ $(OBJDIR):
 	mkdir $(OBJDIR)
 
 clean:
-	rm -r $(OBJDIR)
-	rm $(TARGET)
+	rm -r -f $(OBJDIR)
+	rm -f $(TARGET)

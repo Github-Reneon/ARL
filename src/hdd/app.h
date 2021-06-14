@@ -6,7 +6,8 @@
 #include <SDL2/SDL.h>
 #include <stdio.h>
 #include <iostream>
-#include <time.h>
+
+#include "img_manager.h"
 
 namespace ARL {
 	class App {
@@ -14,26 +15,25 @@ namespace ARL {
 		private:
 
 		// CONSTANT VARS
-		const int SCREEN_WIDTH = 1280;
-		const int SCREEN_HEIGHT = 720;
+		const int SCREEN_WIDTH = 854;
+		const int SCREEN_HEIGHT = 480;
 
 		// METADATA
 		
-		int gamestate;
-		int ticks;
+		int gamestate = -1;
+		int turns = 0;
 		bool running = true;
+		
+		IMG_Manager img_manager;
 
 		// Debug vars
-		int iter = 0;
-		int colours[3][3] = {
-			{ 255, 0, 0},
-			{ 0, 255, 0},
-			{ 0, 0, 255}
-		};
 	
+		int x = 0;
+		int y = 0;
+
 		// SDL VARS
 		SDL_Window* window = NULL;
-		SDL_Surface* surface = NULL;	
+		SDL_Renderer* renderer = NULL;	
 		SDL_Event e;
 
 		// Private methods

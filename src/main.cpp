@@ -3,9 +3,10 @@
 #include "hdd/app.h"
 using namespace std;
 
+// entry
 int main()
 {
-	ARL::App test;
-	test.Start();
+	ARL::App app;
+	app.Start();
 	return 0;
 }
