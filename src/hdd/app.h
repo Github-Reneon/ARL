@@ -21,19 +21,13 @@ namespace ARL {
 		// METADATA
 		
 		int gamestate = -1;
-		int ticks;
+		int turns = 0;
 		bool running = true;
 		
 		IMG_Manager img_manager;
 
 		// Debug vars
-		int iter = 0;
-		int colours[3][3] = {
-			{ 255, 0, 0},
-			{ 0, 255, 0},
-			{ 0, 0, 255}
-		};
-		
+	
 		int x = 0;
 		int y = 0;
 

@@ -2,34 +2,60 @@
 
 using namespace ARL;
 
+// constructor
+// no arguments
+//
+// not much reason for it being here (possible deletion?)
 App::App()
 {
-	ticks = 0;
+	turns = 0;
 	gamestate = 0;
 }
+
+// Render function
+//
+// Loops through SDL_Textures in the IMG_Manager class to draw the player or the title screen
+// depending on the game state.
+// called in the game loop
+// 
+// (temporary implementation)
+// an SDL_Rect is generated for player coords and one is generated for texture coords
+// and is used in the SDL_RenderCopy function
 
 void App::Render()
 {
 	SDL_RenderClear(renderer);
-	SDL_Rect rect;
+	SDL_Rect coords;
+	SDL_Rect tex_coords;
 
-	rect.x = x;
-	rect.y = y;
-	rect.w = 16;
-	rect.h = 16;
-	
+	coords.x = x;
+	coords.y = y;
+	coords.w = 16;
+	coords.h = 16;
+
+	tex_coords.x = 0;
+	tex_coords.y = 0;
+	tex_coords.w = 16;
+	tex_coords.h = 16;
 
 	switch (gamestate) {
 		case 0:
 			SDL_RenderCopy(renderer, img_manager.textures[img_manager.DEBUG][img_manager.TITLE], NULL, NULL);
 			break;
 		case 1:
-			SDL_RenderCopy(renderer, img_manager.textures[img_manager.DEBUG][img_manager.ARCH], NULL, &rect);
+			SDL_RenderCopy(renderer, img_manager.textures[img_manager.CHARACTERS][img_manager.PLAYER], &tex_coords, &coords);
 			break;
 	
 	}
 	SDL_RenderPresent(renderer);
 }
+
+// input management done in the main game loop
+//
+// polls for an SDL_Event (in the memory address of the e variable)
+// to handle input player movement and basic state management are in there
+//
+// (potentially should make a input manager class?)
 
 void App::Inputs()
 {
@@ -58,25 +84,40 @@ void App::Inputs()
 					break;
 				case SDLK_w:
 					if (gamestate == 1)
-					y -= 16;
+					{
+						y -= 16;
+						turns++;
+					}
 					break;
 				case SDLK_s:
 					if (gamestate == 1)
-					y += 16;
+					{
+						y += 16;
+						turns++;
+					}
 					break;
 				case SDLK_a:
 					if (gamestate == 1)
-					x -= 16;
+					{
+						x -= 16;
+						turns++;
+					}
 					break;
 				case SDLK_d:
 					if (gamestate == 1)
-					x += 16;
+					{
+						x += 16;
+						turns++;
+					}
 					break;
 			}
 		}
 	}
 }
 
+// Game start
+// contains the game loop
+// inits SDL2
 void App::Start()
 {
 
